@@ -40,7 +40,7 @@ class FirstScreen extends StatelessWidget {
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal[900]),
                   ),
-                  focusedBorder:UnderlineInputBorder(
+                  focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal[900]),
                   ),
                 ),
@@ -54,15 +54,15 @@ class FirstScreen extends StatelessWidget {
                 obscureText: true,
                 autofocus: true,
                 decoration: InputDecoration(
-                    hintText: "Enter your password",
-                    labelText: "Password",
-                    labelStyle: new TextStyle(
-                      color: Colors.teal[900],
-                    ),
+                  hintText: "Enter your password",
+                  labelText: "Password",
+                  labelStyle: new TextStyle(
+                    color: Colors.teal[900],
+                  ),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal[900]),
                   ),
-                  focusedBorder:UnderlineInputBorder(
+                  focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal[900]),
                   ),
                 ),
@@ -72,7 +72,9 @@ class FirstScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 primary: Colors.teal[900],
               ),
-              child: Text('Login',),
+              child: Text(
+                'Login',
+              ),
               onPressed: () {
                 if (myController2.text == "student" &&
                     myController.text == "student") {
@@ -98,7 +100,6 @@ class SecondScreen extends StatefulWidget {
 
 class _SecondScreenState extends State<SecondScreen> {
   var amount = 0;
-  var amount2 = 0;
   var amount3 = 0;
 
   var headphonePrice = '\$275';
@@ -108,7 +109,7 @@ class _SecondScreenState extends State<SecondScreen> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.teal[900],
-          title: Text("Product Screen"),
+          title: Text("Shop"),
           leading: IconButton(
             onPressed: () {
               Navigator.push(
@@ -129,7 +130,7 @@ class _SecondScreenState extends State<SecondScreen> {
                 backgroundImage: AssetImage('images/headphones.jpg'),
               ),
               title: Padding(
-                padding: const EdgeInsets.only(left: 30),
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(
                   '$headphonePrice',
                   style: TextStyle(
@@ -198,14 +199,13 @@ class _SecondScreenState extends State<SecondScreen> {
                 backgroundImage: AssetImage('images/apple_w.jpg'),
               ),
               title: Padding(
-                padding: const EdgeInsets.only(left: 30),
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(
                   '$watchPrice',
                   style: TextStyle(
                     color: Colors.teal.shade900,
                     fontFamily: 'SourceSansPro',
                     fontSize: 35,
-
                   ),
                 ),
               ),
@@ -265,9 +265,6 @@ class _SecondScreenState extends State<SecondScreen> {
                 primary: Colors.teal[900],
               ),
               onPressed: () {
-                int resultHeadphone = amount * 275;
-                int resultWatch = amount3 * 750;
-                String result = (resultWatch + resultHeadphone).toString();
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -304,8 +301,24 @@ class ThirdRoute extends StatelessWidget {
                   child: Text(
                     "Login Failed",
                     style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 60,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    "Wrong Credentials",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      letterSpacing: 3,
                       fontSize: 50,
                     ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
@@ -325,7 +338,6 @@ class ThirdRoute extends StatelessWidget {
 }
 
 class FourthRoute extends StatefulWidget {
-  String paid = 'Not Paid';
   final String headphone;
   final String watch;
 
@@ -351,6 +363,24 @@ class _FourthRouteState extends State<FourthRoute> {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.teal[900],
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SecondScreen()),
+                  );
+                },
+                child: Icon(
+                  Icons.storefront,
+                  size: 75,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 width: 300,
                 padding: EdgeInsets.all(10),
@@ -396,6 +426,9 @@ class _FourthRouteState extends State<FourthRoute> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.teal[900],
@@ -422,7 +455,6 @@ class _FourthRouteState extends State<FourthRoute> {
                             },
                           ),
                           TextButton(
-
                             child: Text('OK'),
                             onPressed: () {
                               setState(() {
@@ -438,7 +470,9 @@ class _FourthRouteState extends State<FourthRoute> {
                 },
                 child: Text('Confirm Checkout'),
               ),
-            ]),
+
+            ],
+        ),
       ),
     );
   }
