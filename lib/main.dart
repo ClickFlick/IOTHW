@@ -13,7 +13,6 @@ void main() {
 final myController = TextEditingController();
 final myController2 = TextEditingController();
 
-
 class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -28,41 +27,52 @@ class FirstScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
             Container(
-              alignment: Alignment.center,
-              child: TextField(
-                decoration: InputDecoration(
-                    border: InputBorder.none, hintText: 'Username'),
-                enabled: false,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Container(
               width: 300,
               child: TextField(
                 maxLength: 10,
                 controller: myController,
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: TextField(
                 decoration: InputDecoration(
-                    border: InputBorder.none, hintText: 'Password'),
-                enabled: false,
-                textAlign: TextAlign.center,
+                  hintText: "Enter your username",
+                  labelText: "Username",
+                  labelStyle: new TextStyle(
+                    color: Colors.teal[900],
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal[900]),
+                  ),
+                  focusedBorder:UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal[900]),
+                  ),
+                ),
               ),
             ),
             Container(
               width: 300,
               child: TextField(
-                maxLength: 10,
+                maxLength: 20,
                 controller: myController2,
                 obscureText: true,
                 autofocus: true,
+                decoration: InputDecoration(
+                    hintText: "Enter your password",
+                    labelText: "Password",
+                    labelStyle: new TextStyle(
+                      color: Colors.teal[900],
+                    ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal[900]),
+                  ),
+                  focusedBorder:UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal[900]),
+                  ),
+                ),
               ),
             ),
             ElevatedButton(
-              child: Text('Login'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.teal[900],
+              ),
+              child: Text('Login',),
               onPressed: () {
                 if (myController2.text == "student" &&
                     myController.text == "student") {
@@ -97,19 +107,17 @@ class _SecondScreenState extends State<SecondScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal[900],
-        title: Text("Product Screen"),
+          backgroundColor: Colors.teal[900],
+          title: Text("Product Screen"),
           leading: IconButton(
             onPressed: () {
               Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => FirstScreen()),
-            ); },
-            icon: Icon(
-                Icons.home
-            ),
-          )
-      ),
+                context,
+                MaterialPageRoute(builder: (context) => FirstScreen()),
+              );
+            },
+            icon: Icon(Icons.home),
+          )),
       body: SafeArea(
           child: Column(
         children: <Widget>[
@@ -144,7 +152,6 @@ class _SecondScreenState extends State<SecondScreen> {
                         if (amount > 0) {
                           amount -= 1;
                         }
-
                       });
                     },
                     child: Text(
@@ -198,6 +205,7 @@ class _SecondScreenState extends State<SecondScreen> {
                     color: Colors.teal.shade900,
                     fontFamily: 'SourceSansPro',
                     fontSize: 35,
+
                   ),
                 ),
               ),
@@ -214,7 +222,6 @@ class _SecondScreenState extends State<SecondScreen> {
                         if (amount3 > 0) {
                           amount3 -= 1;
                         }
-
                       });
                     },
                     child: Text(
@@ -254,14 +261,22 @@ class _SecondScreenState extends State<SecondScreen> {
             ),
           ),
           ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.teal[900],
+              ),
               onPressed: () {
                 int resultHeadphone = amount * 275;
                 int resultWatch = amount3 * 750;
                 String result = (resultWatch + resultHeadphone).toString();
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FourthRoute(key: new Key("Checkout"),headphone: amount.toString(),watch: amount3.toString(),),));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FourthRoute(
+                        key: new Key("Checkout"),
+                        headphone: amount.toString(),
+                        watch: amount3.toString(),
+                      ),
+                    ));
               },
               child: Text("Checkout")),
         ],
@@ -275,6 +290,7 @@ class ThirdRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal[900],
         title: Text("Fail login"),
       ),
       body: Center(
@@ -283,14 +299,20 @@ class ThirdRoute extends StatelessWidget {
             children: <Widget>[
               Container(
                 alignment: Alignment.center,
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none, hintText: 'Login Failed'),
-                  enabled: false,
-                  textAlign: TextAlign.center,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    "Login Failed",
+                    style: TextStyle(
+                      fontSize: 50,
+                    ),
+                  ),
                 ),
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.teal[900],
+                ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -307,16 +329,17 @@ class FourthRoute extends StatefulWidget {
   final String headphone;
   final String watch;
 
-  FourthRoute({Key key, @required this.headphone, @required this.watch}) : super(key: key);
+  FourthRoute({Key key, @required this.headphone, @required this.watch})
+      : super(key: key);
   @override
-  _FourthRouteState createState() => _FourthRouteState(headphone,watch);
+  _FourthRouteState createState() => _FourthRouteState(headphone, watch);
 }
 
 class _FourthRouteState extends State<FourthRoute> {
   String headphone;
   String watch;
   String paid = 'Not paid';
-  _FourthRouteState(this.headphone,this.watch);
+  _FourthRouteState(this.headphone, this.watch);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -328,7 +351,6 @@ class _FourthRouteState extends State<FourthRoute> {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-
               Container(
                 width: 300,
                 padding: EdgeInsets.all(10),
@@ -375,6 +397,9 @@ class _FourthRouteState extends State<FourthRoute> {
                 ),
               ),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.teal[900],
+                ),
                 onPressed: () {
                   showDialog(
                     context: context,
@@ -386,24 +411,24 @@ class _FourthRouteState extends State<FourthRoute> {
                         title: Text('Total'),
                         content: Text("Your total is: $result\$"),
                         actions: <Widget>[
-
                           TextButton(
                             child: Text('Cancel'),
                             onPressed: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => SecondScreen()),
+                                MaterialPageRoute(
+                                    builder: (context) => SecondScreen()),
                               );
                             },
                           ),
                           TextButton(
+
                             child: Text('OK'),
                             onPressed: () {
                               setState(() {
                                 paid = 'Paid';
                                 Navigator.of(context).pop();
                               });
-
                             },
                           ),
                         ],
@@ -418,5 +443,3 @@ class _FourthRouteState extends State<FourthRoute> {
     );
   }
 }
-
-
