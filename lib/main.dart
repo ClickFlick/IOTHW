@@ -102,6 +102,9 @@ class _SecondScreenState extends State<SecondScreen> {
   var amount = 0;
   var amount3 = 0;
 
+  var headPhoneStock = 10;
+  var watchStock =12;
+
   var headphonePrice = '\$275';
   var watchPrice = '\$750';
   @override
@@ -176,7 +179,31 @@ class _SecondScreenState extends State<SecondScreen> {
                             BorderSide(width: 1, color: Colors.white))),
                     onPressed: () {
                       setState(() {
-                        amount += 1;
+                        if(amount < headPhoneStock){
+                          amount += 1;
+                        }else{
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('WARNING!'),
+                                content: Text("Headphones Out of stock"),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: Text('OK'),
+                                    onPressed: () {
+                                      setState(() {
+                                        Navigator.of(context).pop();
+                                      });
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+
                       });
                     },
                     child: Text(
@@ -245,7 +272,31 @@ class _SecondScreenState extends State<SecondScreen> {
                             BorderSide(width: 1, color: Colors.white))),
                     onPressed: () {
                       setState(() {
-                        amount3 += 1;
+                        if(amount3 < watchStock){
+                          amount3 += 1;
+                        }else{
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('WARNING!'),
+                                content: Text("Watch is Out of stock"),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: Text('OK'),
+                                    onPressed: () {
+                                      setState(() {
+                                        Navigator.of(context).pop();
+                                      });
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+
                       });
                     },
                     child: Text(
@@ -276,6 +327,13 @@ class _SecondScreenState extends State<SecondScreen> {
                     ));
               },
               child: Text("Checkout")),
+          Text(
+              "The stock may run out while you are buying.",
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'SourceSansPro',
+              ),
+            ),
         ],
       )),
     );
